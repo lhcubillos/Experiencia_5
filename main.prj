@@ -1,0 +1,5 @@
+verilog work "prueba_2_asc.v"
+verilog work "prueba_1_asc.v"
+verilog work "controlador_LEDs.v"
+verilog work "controlador_display.v"
+verilog work "main.v"

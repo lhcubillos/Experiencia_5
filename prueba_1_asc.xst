@@ -1,0 +1,5 @@
+set -tmpdir "C:/Users/LH Cubillos/Desktop/Universidad/2016-1-Windows/Lab digitales/Exp5/Exp5/xst/projnav.tmp"
+set -xsthdpdir "C:/Users/LH Cubillos/Desktop/Universidad/2016-1-Windows/Lab digitales/Exp5/Exp5/xst"
+elaborate
+-ifn prueba_1_asc.prj
+-ifmt mixed

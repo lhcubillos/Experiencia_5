@@ -1,5 +1,5 @@
 //! **************************************************************************
-// Written by: Map P.20131013 on Mon May 23 19:21:05 2016
+// Written by: Map P.20131013 on Mon May 23 22:05:47 2016
 //! **************************************************************************
 
 SCHEMATIC START;
@@ -24,6 +24,10 @@ COMP "sw<4>" LOCATE = SITE "G3" LEVEL 1;
 COMP "sw<5>" LOCATE = SITE "F3" LEVEL 1;
 COMP "sw<6>" LOCATE = SITE "E2" LEVEL 1;
 COMP "sw<7>" LOCATE = SITE "N3" LEVEL 1;
+COMP "btn<0>" LOCATE = SITE "G12" LEVEL 1;
+COMP "btn<1>" LOCATE = SITE "C11" LEVEL 1;
+COMP "btn<2>" LOCATE = SITE "M4" LEVEL 1;
+COMP "btn<3>" LOCATE = SITE "A7" LEVEL 1;
 COMP "seg<0>" LOCATE = SITE "L14" LEVEL 1;
 COMP "seg<1>" LOCATE = SITE "H12" LEVEL 1;
 COMP "seg<2>" LOCATE = SITE "N14" LEVEL 1;
@@ -33,5 +37,6 @@ COMP "seg<5>" LOCATE = SITE "L13" LEVEL 1;
 COMP "seg<6>" LOCATE = SITE "M12" LEVEL 1;
 COMP "seg<7>" LOCATE = SITE "N13" LEVEL 1;
 NET "clk_BUFGP/IBUFG" BEL "clk_BUFGP/BUFG.GCLKMUX" USELOCALCONNECT;
+NET "btn_0_BUFGP/IBUFG" BEL "btn_0_BUFGP/BUFG.GCLKMUX" USELOCALCONNECT;
 SCHEMATIC END;
 

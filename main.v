@@ -21,10 +21,13 @@
 module main(
 		input clk,
 		input [7:0] sw,
+		input [3:0] btn,
 		output [7:0] seg,
 		output [3:0] an,
 		output [7:0] leds
     );
+	 
+	 reg dirAux;
 	 
 	 wire [1:0] piso_asc_1;
 	 wire puertas_abiertas_asc_1;
@@ -33,6 +36,13 @@ module main(
 	 wire [1:0] piso_asc_2;
 	 wire puertas_abiertas_asc_2;
 	 wire [1:0] direccion_asc_2;
+	 
+	 initial begin
+		dirAux = 1;
+	 end
+	 always @(posedge(btn[0])) begin
+		dirAux=~dirAux;
+	 end
 	 
 	 controlador_display controlador_display(
 		.clk(clk),
@@ -45,10 +55,10 @@ module main(
 	 controlador_LEDs controlador_LEDs(
 		.clk(clk),
 		.direccion_asc_1(sw[1:0]),
-		.puertas_abiertas_asc_1(sw[2]),
+		.puertas_abiertas_asc_1(dirAux),
 		
-		.direccion_asc_2(sw[6:5]),
-		.puertas_abiertas_asc_2(sw[7]),
+		.direccion_asc_2(sw[4:3]),
+		.puertas_abiertas_asc_2(sw[5]),
 		
 		.leds(leds)
 	 );

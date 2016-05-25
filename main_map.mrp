@@ -9,22 +9,22 @@ Target Device  : xc3s100e
 Target Package : cp132
 Target Speed   : -4
 Mapper Version : spartan3e -- $Revision: 1.55 $
-Mapped Date    : Wed May 25 11:25:00 2016
+Mapped Date    : Wed May 25 11:37:11 2016
 
 Design Summary
 --------------
 Number of errors:      0
-Number of warnings:    2
+Number of warnings:    8
 Logic Utilization:
-  Number of Slice Flip Flops:           180 out of   1,920    9%
-  Number of 4 input LUTs:                94 out of   1,920    4%
+  Number of Slice Flip Flops:           188 out of   1,920    9%
+  Number of 4 input LUTs:               104 out of   1,920    5%
 Logic Distribution:
-  Number of occupied Slices:            140 out of     960   14%
-    Number of Slices containing only related logic:     140 out of     140 100%
-    Number of Slices containing unrelated logic:          0 out of     140   0%
+  Number of occupied Slices:            147 out of     960   15%
+    Number of Slices containing only related logic:     147 out of     147 100%
+    Number of Slices containing unrelated logic:          0 out of     147   0%
       *See NOTES below for an explanation of the effects of unrelated logic.
-  Total Number of 4 input LUTs:         247 out of   1,920   12%
-    Number used as logic:                94
+  Total Number of 4 input LUTs:         257 out of   1,920   13%
+    Number used as logic:               104
     Number used as a route-thru:        153
 
   The Slice Logic Distribution report is not meaningful if the design is
@@ -78,6 +78,18 @@ Section 1 - Errors
 
 Section 2 - Warnings
 --------------------
+WARNING:PhysDesignRules:367 - The signal <sw<0>_IBUF> is incomplete. The signal
+   does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <sw<1>_IBUF> is incomplete. The signal
+   does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <sw<2>_IBUF> is incomplete. The signal
+   does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <sw<3>_IBUF> is incomplete. The signal
+   does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <sw<4>_IBUF> is incomplete. The signal
+   does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <sw<5>_IBUF> is incomplete. The signal
+   does not drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal <sw<6>_IBUF> is incomplete. The signal
    does not drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal <sw<7>_IBUF> is incomplete. The signal
@@ -86,9 +98,13 @@ WARNING:PhysDesignRules:367 - The signal <sw<7>_IBUF> is incomplete. The signal
 Section 3 - Informational
 -------------------------
 INFO:LIT:243 - Logical network sw<7>_IBUF has no load.
-INFO:LIT:395 - The above info message is repeated 1 more times for the following
+INFO:LIT:395 - The above info message is repeated 7 more times for the following
    (max. 5 shown):
-   sw<6>_IBUF
+   sw<6>_IBUF,
+   sw<5>_IBUF,
+   sw<4>_IBUF,
+   sw<3>_IBUF,
+   sw<2>_IBUF
    To see the details of these info messages, please use the -detail switch.
 INFO:MapLib:564 - The following environment variables are currently set:
 INFO:MapLib:591 - XIL_MAP_LOCWARN 	Value: 1

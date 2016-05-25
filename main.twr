@@ -44,16 +44,22 @@ Clock clk to Pad
             | clk (edge) |                  | Clock  |
 Destination |   to PAD   |Internal Clock(s) | Phase  |
 ------------+------------+------------------+--------+
-an<0>       |    8.571(R)|clk_BUFGP         |   0.000|
-an<1>       |    7.871(R)|clk_BUFGP         |   0.000|
-an<2>       |    7.994(R)|clk_BUFGP         |   0.000|
-an<3>       |    7.305(R)|clk_BUFGP         |   0.000|
+an<0>       |    8.010(R)|clk_BUFGP         |   0.000|
+an<1>       |    8.117(R)|clk_BUFGP         |   0.000|
+an<2>       |    7.938(R)|clk_BUFGP         |   0.000|
+an<3>       |    7.845(R)|clk_BUFGP         |   0.000|
+leds<0>     |   11.064(R)|clk_BUFGP         |   0.000|
+leds<1>     |   10.307(R)|clk_BUFGP         |   0.000|
+leds<2>     |    8.728(R)|clk_BUFGP         |   0.000|
+leds<3>     |    9.634(R)|clk_BUFGP         |   0.000|
+leds<4>     |    9.564(R)|clk_BUFGP         |   0.000|
+leds<5>     |    8.044(R)|clk_BUFGP         |   0.000|
 seg<0>      |    7.356(R)|clk_BUFGP         |   0.000|
 seg<1>      |    7.648(R)|clk_BUFGP         |   0.000|
 seg<2>      |    7.830(R)|clk_BUFGP         |   0.000|
 seg<3>      |    7.605(R)|clk_BUFGP         |   0.000|
 seg<4>      |    7.614(R)|clk_BUFGP         |   0.000|
-seg<6>      |    7.368(R)|clk_BUFGP         |   0.000|
+seg<6>      |    7.303(R)|clk_BUFGP         |   0.000|
 ------------+------------+------------------+--------+
 
 Clock to Setup on destination clock clk
@@ -61,23 +67,11 @@ Clock to Setup on destination clock clk
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-clk            |    6.289|         |         |         |
+clk            |    6.358|         |         |         |
 ---------------+---------+---------+---------+---------+
 
-Pad to Pad
----------------+---------------+---------+
-Source Pad     |Destination Pad|  Delay  |
----------------+---------------+---------+
-sw<0>          |leds<0>        |    5.209|
-sw<1>          |leds<1>        |    6.078|
-sw<2>          |leds<2>        |    5.656|
-sw<3>          |leds<3>        |    7.253|
-sw<4>          |leds<4>        |    6.208|
-sw<5>          |leds<5>        |    6.143|
----------------+---------------+---------+
 
-
-Analysis completed Wed May 25 11:25:14 2016 
+Analysis completed Wed May 25 11:37:24 2016 
 --------------------------------------------------------------------------------
 
 Trace Settings:

@@ -35,6 +35,12 @@ module main(
 	 wire puertas_abiertas_asc_2;
 	 wire [1:0] direccion_asc_2;
 
+	 assign leds[7:6] = 2'b00;
+	 assign leds[5] = puertas_abiertas_asc_2;
+	 assign leds[4:3] = puertas_abiertas_asc_2 ? 2'b00: direccion_asc_2;
+	 assign leds[2] = puertas_abiertas_asc_1;
+	 assign leds[1:0] = puertas_abiertas_asc_1 ? 2'b00: direccion_asc_1;
+	 
 	 
 	 controlador_display controlador_display(
 		.clk(clk),
@@ -44,16 +50,6 @@ module main(
 		.an(an)
 	 );
 	 
-	 controlador_LEDs controlador_LEDs(
-		.clk(clk),
-		.direccion_asc_1(sw[1:0]),
-		.puertas_abiertas_asc_1(sw[2]),
-		
-		.direccion_asc_2(sw[4:3]),
-		.puertas_abiertas_asc_2(sw[5]),
-		
-		.leds(leds)
-	 );
 	 
 	 prueba_1_asc prueba_1_asc (
 		.clk(clk),

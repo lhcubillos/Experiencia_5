@@ -1,5 +1,5 @@
 set -tmpdir "C:/Users/LH Cubillos/Desktop/Experiencia_5/xst/projnav.tmp"
 set -xsthdpdir "C:/Users/LH Cubillos/Desktop/Experiencia_5/xst"
 elaborate
--ifn prueba_1_asc.prj
+-ifn controlador_ascensores.prj
 -ifmt mixed

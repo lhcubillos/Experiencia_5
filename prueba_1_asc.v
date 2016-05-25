@@ -20,6 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 module prueba_1_asc(
 		clk,
+		destino,
 		
 		piso,
 		direccion,
@@ -31,6 +32,7 @@ module prueba_1_asc(
     );
 	 
 	input clk;
+	input [1:0] destino;
 	output [1:0] piso;
 	output reg [1:0] direccion; //00:nada, 01: arriba, 10: abajo.
 	output reg puertas_abiertas;
@@ -40,6 +42,9 @@ module prueba_1_asc(
 	reg [33:0] disp_ctr;
 	reg [1:0] state;
 	reg [1:0] last_state;
+	
+	//reg [1:0] destino;
+	
 	
 	reg [33:0] ctr_en_piso;
 	reg state_andando;
@@ -53,7 +58,8 @@ module prueba_1_asc(
 	initial begin
 		state = one;
 		state_andando = andando;
-		last_state = minus_one;
+		//last_state = minus_one;
+		//destino = three;
 		direccion = 2'b01;
 		clk_nuevo = 0;
 		disp_ctr = 0;
@@ -61,39 +67,53 @@ module prueba_1_asc(
 		puertas_abiertas = 0;
 	end
 	
-  	always @ (posedge(clk_nuevo))   // When will Always Block Be Triggered
+	
+	always @ (posedge(clk_nuevo))   // When will Always Block Be Triggered
 	begin
-		case (state)
-			minus_one: begin
-				state = one;
-				last_state = minus_one;
-				direccion = 2'b01; //subiendo
-			end
-			
-			one: begin
-				if (last_state == two) begin
-					state = minus_one;
-					direccion = 2'b00;
-				end
-				else if (last_state == minus_one) state = two;
-				last_state = one;
-			end
-			
-			two: begin
-				if (last_state == three) state = one;
-				else if (last_state == one)begin
-					state = three;
-					direccion = 2'b00;
-				end
-				last_state = two;
-			end
-			
-			three: begin
-				state = two;
-				last_state = three;
-				direccion = 2'b10; //bajando
-			end
-		endcase
+		if (destino > state) begin
+			direccion = 2'b01;
+			case (state)
+				minus_one: state = one;
+				one: state = two;
+				two: state = three;
+			endcase
+		end else if (destino < state) begin
+			direccion = 2'b10;
+			case (state)
+				one: state = minus_one;
+				two: state = one;
+				three: state = two;
+			endcase
+		end
+		else direccion = 2'b00;
+	
+//		case (state)
+//			minus_one: begin
+//				state = one;
+//				direccion = 2'b01; //subiendo
+//			end
+//			
+//			one: begin
+//				if (direccion == 2'b10) begin
+//					state = minus_one;
+//					direccion = 2'b00;
+//				end
+//				else if (direccion == 2'b01) state = two;
+//			end
+//			
+//			two: begin
+//				if (direccion == 2'b10) state = one;
+//				else if (direccion ==2'b01)begin
+//					state = three;
+//					direccion = 2'b00;
+//				end
+//			end
+//			
+//			three: begin
+//				state = two;
+//				direccion = 2'b10; //bajando
+//			end
+//		endcase
 	end
 	
 	always @(posedge(clk)) begin
@@ -104,18 +124,23 @@ module prueba_1_asc(
 					clk_nuevo <= ~clk_nuevo;
 					disp_ctr <= 0;
 					if (clk_nuevo == 1) begin
-						state_andando <= IDLE;
-						puertas_abiertas <= 1;
+						if (state == destino) begin
+							state_andando <= IDLE;
+							puertas_abiertas <= 1; //Solo cuando se llega.
+						end
 					end
 				end
 			end
 			
-			IDLE: begin
+			IDLE: begin //Esto deberia pasar solo cuando se llega al piso de destino.
 				ctr_en_piso <= ctr_en_piso + 1;
+				puertas_abiertas <= 1;
 				if (ctr_en_piso == en_piso) begin
 					ctr_en_piso <= 0;
-					state_andando <= andando;
-					puertas_abiertas <= 0;
+					//destino = one;
+					if (state != destino)
+						state_andando <= andando;
+						puertas_abiertas <= 0;
 				end
 			end
 		endcase

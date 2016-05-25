@@ -1,14 +1,10 @@
 Release 14.7 Drc P.20131013 (nt64)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
-Wed May 25 11:37:27 2016
+Wed May 25 17:31:53 2016
 
 drc -z main.ncd main.pcf
 
-WARNING:PhysDesignRules:367 - The signal <sw<0>_IBUF> is incomplete. The signal
-   does not drive any load pins in the design.
-WARNING:PhysDesignRules:367 - The signal <sw<1>_IBUF> is incomplete. The signal
-   does not drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal <sw<2>_IBUF> is incomplete. The signal
    does not drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal <sw<3>_IBUF> is incomplete. The signal
@@ -21,5 +17,5 @@ WARNING:PhysDesignRules:367 - The signal <sw<6>_IBUF> is incomplete. The signal
    does not drive any load pins in the design.
 WARNING:PhysDesignRules:367 - The signal <sw<7>_IBUF> is incomplete. The signal
    does not drive any load pins in the design.
-DRC detected 0 errors and 8 warnings.  Please see the previously displayed
+DRC detected 0 errors and 6 warnings.  Please see the previously displayed
 individual error or warning messages for more details.

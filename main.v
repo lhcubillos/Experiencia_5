@@ -54,7 +54,7 @@ module main(
 	 prueba_1_asc prueba_1_asc (
 		.clk(clk),
 		
-		.destino(sw[1:0]),
+		//.destino(sw[1:0]),
 		
 		.piso(piso_asc_1),
 		.direccion(direccion_asc_1),

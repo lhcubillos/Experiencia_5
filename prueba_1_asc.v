@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 module prueba_1_asc(
 		clk,
-		destino,
+		//destino,
 		
 		piso,
 		direccion,
@@ -32,12 +32,16 @@ module prueba_1_asc(
     );
 	 
 	input clk;
-	input [1:0] destino;
+	//input [1:0] destino;
 	output [1:0] piso;
 	output reg [1:0] direccion; //00:nada, 01: arriba, 10: abajo.
 	output reg puertas_abiertas;
 	
 	reg clk_nuevo;
+	
+	reg [9:0] address;
+	wire [1:0] destino;
+	
 	 
 	reg [33:0] disp_ctr;
 	reg [1:0] state;
@@ -56,6 +60,7 @@ module prueba_1_asc(
 	parameter minus_one = 2'b00, one = 2'b01, two = 2'b10, three = 2'b11;
 	
 	initial begin
+		address = 0;
 		state = one;
 		state_andando = andando;
 		//last_state = minus_one;
@@ -66,6 +71,12 @@ module prueba_1_asc(
 		ctr_en_piso = 0;
 		puertas_abiertas = 0;
 	end
+	
+	cola_destinos_externos cola_externos(
+		.address(address),
+		.destino(destino)
+	);
+	
 	
 	
 	always @ (posedge(clk_nuevo))   // When will Always Block Be Triggered
@@ -136,11 +147,15 @@ module prueba_1_asc(
 				ctr_en_piso <= ctr_en_piso + 1;
 				puertas_abiertas <= 1;
 				if (ctr_en_piso == en_piso) begin
+//					if (address < 9)
+//						address <= address + 1;
+//					else address <= 0;
 					ctr_en_piso <= 0;
 					//destino = one;
-					if (state != destino)
-						state_andando <= andando;
-						puertas_abiertas <= 0;
+					state_andando <= andando;
+					puertas_abiertas <= 0;
+					//if (state != destino)
+						
 				end
 			end
 		endcase

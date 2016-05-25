@@ -104,7 +104,9 @@ Slice Utilization Ratio Delta      : 5
 =========================================================================
 *                          HDL Compilation                              *
 =========================================================================
+Compiling verilog file "cola_destinos_externos.v" in library work
 Compiling verilog file "prueba_2_asc.v" in library work
+Module <cola_destinos_externos> compiled
 Compiling verilog file "prueba_1_asc.v" in library work
 Module <prueba_2_asc> compiled
 Compiling verilog file "controlador_display.v" in library work
@@ -143,6 +145,12 @@ Analyzing hierarchy for module <prueba_2_asc> in library <work> with parameters.
 	three = "11"
 	two = "10"
 
+Analyzing hierarchy for module <cola_destinos_externos> in library <work> with parameters.
+	minus_one = "00"
+	one = "01"
+	three = "11"
+	two = "10"
+
 
 =========================================================================
 *                            HDL Analysis                               *
@@ -163,6 +171,13 @@ Analyzing module <prueba_1_asc> in library <work>.
 	three = 2'b11
 	two = 2'b10
 Module <prueba_1_asc> is correct for synthesis.
+ 
+Analyzing module <cola_destinos_externos> in library <work>.
+	minus_one = 2'b00
+	one = 2'b01
+	three = 2'b11
+	two = 2'b10
+Module <cola_destinos_externos> is correct for synthesis.
  
 Analyzing module <prueba_2_asc> in library <work>.
 	IDLE = 32'sb00000000000000000000000000000000
@@ -201,42 +216,9 @@ Synthesizing Unit <controlador_display>.
 Unit <controlador_display> synthesized.
 
 
-Synthesizing Unit <prueba_1_asc>.
-    Related source file is "prueba_1_asc.v".
-WARNING:Xst:1780 - Signal <last_state> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
-    Found finite state machine <FSM_0> for signal <state>.
-    -----------------------------------------------------------------------
-    | States             | 4                                              |
-    | Transitions        | 12                                             |
-    | Inputs             | 2                                              |
-    | Outputs            | 3                                              |
-    | Clock              | clk_nuevo                 (rising_edge)        |
-    | Clock enable       | state$not0000             (positive)           |
-    | Power Up State     | 01                                             |
-    | Encoding           | automatic                                      |
-    | Implementation     | LUT                                            |
-    -----------------------------------------------------------------------
-    Found 2-bit register for signal <direccion>.
-    Found 1-bit register for signal <puertas_abiertas>.
-    Found 1-bit register for signal <clk_nuevo>.
-    Found 34-bit up counter for signal <ctr_en_piso>.
-    Found 34-bit up counter for signal <disp_ctr>.
-    Found 2-bit comparator greater for signal <state$cmp_gt0000> created at line 73.
-    Found 2-bit comparator less for signal <state$cmp_lt0000> created at line 80.
-    Found 1-bit register for signal <state_andando>.
-    Found 2-bit comparator equal for signal <state_andando$cmp_eq0000> created at line 127.
-    Found 2-bit comparator not equal for signal <state_andando$cmp_ne0000> created at line 141.
-    Summary:
-	inferred   1 Finite State Machine(s).
-	inferred   2 Counter(s).
-	inferred   5 D-type flip-flop(s).
-	inferred   4 Comparator(s).
-Unit <prueba_1_asc> synthesized.
-
-
 Synthesizing Unit <prueba_2_asc>.
     Related source file is "prueba_2_asc.v".
-    Found finite state machine <FSM_1> for signal <state>.
+    Found finite state machine <FSM_0> for signal <state>.
     -----------------------------------------------------------------------
     | States             | 4                                              |
     | Transitions        | 8                                              |
@@ -262,9 +244,51 @@ Synthesizing Unit <prueba_2_asc>.
 Unit <prueba_2_asc> synthesized.
 
 
+Synthesizing Unit <cola_destinos_externos>.
+    Related source file is "cola_destinos_externos.v".
+WARNING:Xst:647 - Input <address> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:1305 - Output <destino> is never assigned. Tied to value 000000000000000000000000.
+WARNING:Xst:646 - Signal <Mem> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+Unit <cola_destinos_externos> synthesized.
+
+
+Synthesizing Unit <prueba_1_asc>.
+    Related source file is "prueba_1_asc.v".
+WARNING:Xst:1780 - Signal <last_state> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <address<9:8>> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:653 - Signal <address<7:0>> is used but never assigned. This sourceless signal will be automatically connected to value 00000000.
+    Found finite state machine <FSM_1> for signal <state>.
+    -----------------------------------------------------------------------
+    | States             | 4                                              |
+    | Transitions        | 12                                             |
+    | Inputs             | 2                                              |
+    | Outputs            | 3                                              |
+    | Clock              | clk_nuevo                 (rising_edge)        |
+    | Clock enable       | state$not0000             (positive)           |
+    | Power Up State     | 01                                             |
+    | Encoding           | automatic                                      |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Found 2-bit register for signal <direccion>.
+    Found 1-bit register for signal <puertas_abiertas>.
+    Found 1-bit register for signal <clk_nuevo>.
+    Found 34-bit up counter for signal <ctr_en_piso>.
+    Found 34-bit up counter for signal <disp_ctr>.
+    Found 2-bit comparator greater for signal <state$cmp_gt0000> created at line 84.
+    Found 2-bit comparator less for signal <state$cmp_lt0000> created at line 91.
+    Found 1-bit register for signal <state_andando>.
+    Found 2-bit comparator equal for signal <state_andando$cmp_eq0000> created at line 138.
+    Summary:
+	inferred   1 Finite State Machine(s).
+	inferred   2 Counter(s).
+	inferred   5 D-type flip-flop(s).
+	inferred   3 Comparator(s).
+Unit <prueba_1_asc> synthesized.
+
+
 Synthesizing Unit <main>.
     Related source file is "main.v".
-WARNING:Xst:647 - Input <sw<7:2>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <sw> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 Unit <main> synthesized.
 
 
@@ -281,13 +305,12 @@ Macro Statistics
  4-bit register                                        : 2
  7-bit register                                        : 1
  8-bit register                                        : 1
-# Comparators                                          : 10
+# Comparators                                          : 9
  16-bit comparator greatequal                          : 1
  16-bit comparator lessequal                           : 3
  2-bit comparator equal                                : 1
  2-bit comparator greater                              : 3
  2-bit comparator less                                 : 1
- 2-bit comparator not equal                            : 1
 
 =========================================================================
 
@@ -296,16 +319,6 @@ Macro Statistics
 =========================================================================
 
 Analyzing FSM <FSM_1> for best encoding.
-Optimizing FSM <prueba_2_asc/state/FSM> on signal <state[1:2]> with user encoding.
--------------------
- State | Encoding
--------------------
- 11    | 11
- 01    | 01
- 00    | 00
- 10    | 10
--------------------
-Analyzing FSM <FSM_0> for best encoding.
 Optimizing FSM <prueba_1_asc/state/FSM> on signal <state[1:2]> with sequential encoding.
 -------------------
  State | Encoding
@@ -314,6 +327,16 @@ Optimizing FSM <prueba_1_asc/state/FSM> on signal <state[1:2]> with sequential e
  00    | 01
  10    | 10
  11    | 11
+-------------------
+Analyzing FSM <FSM_0> for best encoding.
+Optimizing FSM <prueba_2_asc/state/FSM> on signal <state[1:2]> with user encoding.
+-------------------
+ State | Encoding
+-------------------
+ 11    | 11
+ 01    | 01
+ 00    | 00
+ 10    | 10
 -------------------
 INFO:Xst:2261 - The FF/Latch <sseg_3> in Unit <controlador_display> is equivalent to the following 3 FFs/Latches, which will be removed : <sseg_4> <sseg_5> <sseg_6> 
 WARNING:Xst:1710 - FF/Latch <sseg_3> (without init value) has a constant value of 0 in block <controlador_display>. This FF/Latch will be trimmed during the optimization process.
@@ -329,13 +352,12 @@ Macro Statistics
  34-bit up counter                                     : 4
 # Registers                                            : 29
  Flip-Flops                                            : 29
-# Comparators                                          : 10
+# Comparators                                          : 9
  16-bit comparator greatequal                          : 1
  16-bit comparator lessequal                           : 3
  2-bit comparator equal                                : 1
  2-bit comparator greater                              : 3
  2-bit comparator less                                 : 1
- 2-bit comparator not equal                            : 1
 
 =========================================================================
 
@@ -344,19 +366,20 @@ Macro Statistics
 =========================================================================
 INFO:Xst:2261 - The FF/Latch <seg_5> in Unit <controlador_display> is equivalent to the following FF/Latch, which will be removed : <seg_7> 
 INFO:Xst:2261 - The FF/Latch <seg_0> in Unit <controlador_display> is equivalent to the following FF/Latch, which will be removed : <seg_3> 
+WARNING:Xst:1426 - The value init of the FF/Latch prueba_1_asc/direccion_0 hinder the constant cleaning in the block main.
+   You should achieve better results by setting this init to 0.
+WARNING:Xst:1293 - FF/Latch <prueba_1_asc/state_FSM_FFd1> has a constant value of 0 in block <main>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1426 - The value init of the FF/Latch prueba_1_asc/state_FSM_FFd2 hinder the constant cleaning in the block main.
+   You should achieve better results by setting this init to 1.
 
 Optimizing unit <main> ...
 
 Optimizing unit <controlador_display> ...
 WARNING:Xst:1710 - FF/Latch <seg_5> (without init value) has a constant value of 1 in block <controlador_display>. This FF/Latch will be trimmed during the optimization process.
 
-Optimizing unit <prueba_1_asc> ...
-
-Optimizing unit <prueba_2_asc> ...
-
 Mapping all equations...
 Building and optimizing final netlist ...
-Found area constraint ratio of 100 (+ 5) on block main, actual ratio is 15.
+Found area constraint ratio of 100 (+ 5) on block main, actual ratio is 14.
 FlipFlop prueba_2_asc/state_andando has been replicated 1 time(s)
 
 Final Macro Processing ...
@@ -365,8 +388,8 @@ Final Macro Processing ...
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 183
- Flip-Flops                                            : 183
+# Registers                                            : 182
+ Flip-Flops                                            : 182
 
 =========================================================================
 
@@ -395,31 +418,28 @@ Design Statistics
 # IOs                              : 29
 
 Cell Usage :
-# BELS                             : 640
+# BELS                             : 633
 #      GND                         : 1
-#      INV                         : 19
+#      INV                         : 20
 #      LUT1                        : 153
-#      LUT2                        : 32
-#      LUT2_L                      : 2
-#      LUT3                        : 12
+#      LUT2                        : 34
+#      LUT3                        : 11
 #      LUT3_L                      : 1
-#      LUT4                        : 50
-#      LUT4_L                      : 1
+#      LUT4                        : 44
 #      MUXCY                       : 212
 #      MUXF5                       : 4
 #      VCC                         : 1
 #      XORCY                       : 152
-# FlipFlops/Latches                : 183
+# FlipFlops/Latches                : 182
 #      FD                          : 29
-#      FDE                         : 7
+#      FDE                         : 6
 #      FDR                         : 3
 #      FDRE                        : 137
 #      FDS                         : 4
 #      FDSE                        : 3
 # Clock Buffers                    : 1
 #      BUFGP                       : 1
-# IO Buffers                       : 22
-#      IBUF                        : 2
+# IO Buffers                       : 20
 #      OBUF                        : 20
 =========================================================================
 
@@ -428,11 +448,11 @@ Device utilization summary:
 
 Selected Device : 3s100ecp132-4 
 
- Number of Slices:                      140  out of    960    14%  
- Number of Slice Flip Flops:            183  out of   1920     9%  
- Number of 4 input LUTs:                270  out of   1920    14%  
+ Number of Slices:                      139  out of    960    14%  
+ Number of Slice Flip Flops:            182  out of   1920     9%  
+ Number of 4 input LUTs:                263  out of   1920    13%  
  Number of IOs:                          29
- Number of bonded IOBs:                  23  out of     83    27%  
+ Number of bonded IOBs:                  21  out of     83    25%  
  Number of GCLKs:                         1  out of     24     4%  
 
 ---------------------------
@@ -453,13 +473,13 @@ NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
 
 Clock Information:
 ------------------
------------------------------------+----------------------------------+-------+
-Clock Signal                       | Clock buffer(FF name)            | Load  |
------------------------------------+----------------------------------+-------+
-clk                                | BUFGP                            | 171   |
-prueba_1_asc/clk_nuevo             | NONE(prueba_1_asc/state_FSM_FFd2)| 4     |
-prueba_2_asc/clk_nuevo             | NONE(prueba_2_asc/state_FSM_FFd2)| 8     |
------------------------------------+----------------------------------+-------+
+-----------------------------------+-------------------------------+-------+
+Clock Signal                       | Clock buffer(FF name)         | Load  |
+-----------------------------------+-------------------------------+-------+
+prueba_2_asc/clk_nuevo             | NONE(prueba_2_asc/direccion_1)| 8     |
+clk                                | BUFGP                         | 171   |
+prueba_1_asc/clk_nuevo             | NONE(prueba_1_asc/direccion_1)| 3     |
+-----------------------------------+-------------------------------+-------+
 INFO:Xst:2169 - HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
 
 Asynchronous Control Signals Information:
@@ -471,60 +491,13 @@ Timing Summary:
 Speed Grade: -4
 
    Minimum period: 6.894ns (Maximum Frequency: 145.054MHz)
-   Minimum input arrival time before clock: 5.037ns
+   Minimum input arrival time before clock: No path found
    Maximum output required time after clock: 5.693ns
    Maximum combinational path delay: No path found
 
 Timing Detail:
 --------------
 All values displayed in nanoseconds (ns)
-
-=========================================================================
-Timing constraint: Default period analysis for Clock 'clk'
-  Clock period: 6.894ns (frequency: 145.054MHz)
-  Total number of paths / destination ports: 8464 / 459
--------------------------------------------------------------------------
-Delay:               6.894ns (Levels of Logic = 4)
-  Source:            prueba_2_asc/state_andando_1 (FF)
-  Destination:       prueba_2_asc/ctr_en_piso_33 (FF)
-  Source Clock:      clk rising
-  Destination Clock: clk rising
-
-  Data Path: prueba_2_asc/state_andando_1 to prueba_2_asc/ctr_en_piso_33
-                                Gate     Net
-    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
-    ----------------------------------------  ------------
-     FD:C->Q              35   0.591   1.267  prueba_2_asc/state_andando_1 (prueba_2_asc/state_andando_1)
-     LUT4:I3->O            1   0.704   0.000  prueba_2_asc/puertas_abiertas_mux00001_wg_lut<7> (prueba_2_asc/puertas_abiertas_mux00001_wg_lut<7>)
-     MUXCY:S->O            1   0.464   0.000  prueba_2_asc/puertas_abiertas_mux00001_wg_cy<7> (prueba_2_asc/puertas_abiertas_mux00001_wg_cy<7>)
-     MUXCY:CI->O           3   0.459   0.531  prueba_2_asc/puertas_abiertas_mux00001_wg_cy<8> (prueba_2_asc/puertas_abiertas_mux00001_wg_cy<8>)
-     INV:I->O             34   0.704   1.263  prueba_2_asc/ctr_en_piso_and00001_INV_0 (prueba_2_asc/ctr_en_piso_and0000)
-     FDRE:R                    0.911          prueba_2_asc/ctr_en_piso_0
-    ----------------------------------------
-    Total                      6.894ns (3.833ns logic, 3.061ns route)
-                                       (55.6% logic, 44.4% route)
-
-=========================================================================
-Timing constraint: Default period analysis for Clock 'prueba_1_asc/clk_nuevo'
-  Clock period: 3.214ns (frequency: 311.139MHz)
-  Total number of paths / destination ports: 11 / 6
--------------------------------------------------------------------------
-Delay:               3.214ns (Levels of Logic = 1)
-  Source:            prueba_1_asc/state_FSM_FFd1 (FF)
-  Destination:       prueba_1_asc/state_FSM_FFd2 (FF)
-  Source Clock:      prueba_1_asc/clk_nuevo rising
-  Destination Clock: prueba_1_asc/clk_nuevo rising
-
-  Data Path: prueba_1_asc/state_FSM_FFd1 to prueba_1_asc/state_FSM_FFd2
-                                Gate     Net
-    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
-    ----------------------------------------  ------------
-     FDE:C->Q             10   0.591   0.917  prueba_1_asc/state_FSM_FFd1 (prueba_1_asc/state_FSM_FFd1)
-     LUT4:I2->O            2   0.704   0.447  prueba_1_asc/state_not00011 (prueba_1_asc/state_not0001)
-     FDE:CE                    0.555          prueba_1_asc/state_FSM_FFd1
-    ----------------------------------------
-    Total                      3.214ns (1.850ns logic, 1.364ns route)
-                                       (57.6% logic, 42.4% route)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'prueba_2_asc/clk_nuevo'
@@ -542,7 +515,7 @@ Delay:               3.493ns (Levels of Logic = 2)
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
      FDR:C->Q              4   0.591   0.762  prueba_2_asc/last_state_1 (prueba_2_asc/last_state_1)
-     LUT2:I0->O            1   0.704   0.424  prueba_2_asc/state_FSM_FFd1-In_SW0 (N0)
+     LUT2:I0->O            1   0.704   0.424  prueba_2_asc/state_FSM_FFd1-In_SW0 (N8)
      LUT4:I3->O            1   0.704   0.000  prueba_2_asc/state_FSM_FFd1-In (prueba_2_asc/state_FSM_FFd1-In)
      FD:D                      0.308          prueba_2_asc/state_FSM_FFd1
     ----------------------------------------
@@ -550,46 +523,51 @@ Delay:               3.493ns (Levels of Logic = 2)
                                        (66.0% logic, 34.0% route)
 
 =========================================================================
-Timing constraint: Default OFFSET IN BEFORE for Clock 'prueba_1_asc/clk_nuevo'
-  Total number of paths / destination ports: 11 / 6
+Timing constraint: Default period analysis for Clock 'clk'
+  Clock period: 6.894ns (frequency: 145.054MHz)
+  Total number of paths / destination ports: 8437 / 459
 -------------------------------------------------------------------------
-Offset:              3.636ns (Levels of Logic = 2)
-  Source:            sw<0> (PAD)
-  Destination:       prueba_1_asc/state_FSM_FFd2 (FF)
-  Destination Clock: prueba_1_asc/clk_nuevo rising
-
-  Data Path: sw<0> to prueba_1_asc/state_FSM_FFd2
-                                Gate     Net
-    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
-    ----------------------------------------  ------------
-     IBUF:I->O             5   1.218   0.712  sw_0_IBUF (sw_0_IBUF)
-     LUT4:I1->O            2   0.704   0.447  prueba_1_asc/state_not00011 (prueba_1_asc/state_not0001)
-     FDE:CE                    0.555          prueba_1_asc/state_FSM_FFd1
-    ----------------------------------------
-    Total                      3.636ns (2.477ns logic, 1.159ns route)
-                                       (68.1% logic, 31.9% route)
-
-=========================================================================
-Timing constraint: Default OFFSET IN BEFORE for Clock 'clk'
-  Total number of paths / destination ports: 4 / 2
--------------------------------------------------------------------------
-Offset:              5.037ns (Levels of Logic = 4)
-  Source:            sw<1> (PAD)
-  Destination:       prueba_1_asc/puertas_abiertas (FF)
+Delay:               6.894ns (Levels of Logic = 4)
+  Source:            prueba_2_asc/state_andando_1 (FF)
+  Destination:       prueba_2_asc/ctr_en_piso_0 (FF)
+  Source Clock:      clk rising
   Destination Clock: clk rising
 
-  Data Path: sw<1> to prueba_1_asc/puertas_abiertas
+  Data Path: prueba_2_asc/state_andando_1 to prueba_2_asc/ctr_en_piso_0
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O             6   1.218   0.673  sw_1_IBUF (sw_1_IBUF)
-     LUT4:I3->O            2   0.704   0.622  prueba_1_asc/state_andando_cmp_eq000021 (prueba_1_asc/state_andando_cmp_eq0000)
-     LUT3_L:I0->LO         1   0.704   0.104  prueba_1_asc/puertas_abiertas_mux0000_SW0 (N22)
-     LUT4:I3->O            1   0.704   0.000  prueba_1_asc/puertas_abiertas_mux0000 (prueba_1_asc/puertas_abiertas_mux0000)
-     FD:D                      0.308          prueba_1_asc/puertas_abiertas
+     FD:C->Q              35   0.591   1.267  prueba_2_asc/state_andando_1 (prueba_2_asc/state_andando_1)
+     LUT4:I3->O            1   0.704   0.000  prueba_2_asc/puertas_abiertas_mux00001_wg_lut<7> (prueba_2_asc/puertas_abiertas_mux00001_wg_lut<7>)
+     MUXCY:S->O            1   0.464   0.000  prueba_2_asc/puertas_abiertas_mux00001_wg_cy<7> (prueba_2_asc/puertas_abiertas_mux00001_wg_cy<7>)
+     MUXCY:CI->O           3   0.459   0.531  prueba_2_asc/puertas_abiertas_mux00001_wg_cy<8> (prueba_2_asc/puertas_abiertas_mux00001_wg_cy<8>)
+     INV:I->O             34   0.704   1.263  prueba_2_asc/ctr_en_piso_and00001_INV_0 (prueba_2_asc/ctr_en_piso_and0000)
+     FDRE:R                    0.911          prueba_2_asc/ctr_en_piso_0
     ----------------------------------------
-    Total                      5.037ns (3.638ns logic, 1.399ns route)
-                                       (72.2% logic, 27.8% route)
+    Total                      6.894ns (3.833ns logic, 3.061ns route)
+                                       (55.6% logic, 44.4% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'prueba_1_asc/clk_nuevo'
+  Clock period: 2.884ns (frequency: 346.741MHz)
+  Total number of paths / destination ports: 2 / 2
+-------------------------------------------------------------------------
+Delay:               2.884ns (Levels of Logic = 1)
+  Source:            prueba_1_asc/state_FSM_FFd2 (FF)
+  Destination:       prueba_1_asc/state_FSM_FFd2 (FF)
+  Source Clock:      prueba_1_asc/clk_nuevo rising
+  Destination Clock: prueba_1_asc/clk_nuevo rising
+
+  Data Path: prueba_1_asc/state_FSM_FFd2 to prueba_1_asc/state_FSM_FFd2
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDE:C->Q              4   0.591   0.587  prueba_1_asc/state_FSM_FFd2 (prueba_1_asc/state_FSM_FFd2)
+     INV:I->O              2   0.704   0.447  piso_asc_1<0>1_INV_0 (piso_asc_1<0>)
+     FDE:CE                    0.555          prueba_1_asc/state_FSM_FFd2
+    ----------------------------------------
+    Total                      2.884ns (1.850ns logic, 1.034ns route)
+                                       (64.1% logic, 35.9% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'clk'
@@ -655,13 +633,13 @@ Offset:              5.582ns (Levels of Logic = 2)
 
 
 Total REAL time to Xst completion: 5.00 secs
-Total CPU time to Xst completion: 5.33 secs
+Total CPU time to Xst completion: 5.29 secs
  
 --> 
 
-Total memory usage is 264108 kilobytes
+Total memory usage is 265132 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :    5 (   0 filtered)
+Number of warnings :   15 (   0 filtered)
 Number of infos    :    4 (   0 filtered)
 

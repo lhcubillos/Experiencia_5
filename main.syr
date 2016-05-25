@@ -275,16 +275,11 @@ Unit <prueba_2_asc> synthesized.
 
 Synthesizing Unit <main>.
     Related source file is "main.v".
-WARNING:Xst:647 - Input <btn<3:1>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:647 - Input <sw<7:6>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
-WARNING:Xst:647 - Input <sw<2>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:646 - Signal <puertas_abiertas_asc_2> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:646 - Signal <puertas_abiertas_asc_1> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:646 - Signal <direccion_asc_2> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:646 - Signal <direccion_asc_1> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-    Found 1-bit register for signal <dirAux>.
-    Summary:
-	inferred   1 D-type flip-flop(s).
 Unit <main> synthesized.
 
 
@@ -295,8 +290,8 @@ Macro Statistics
 # Counters                                             : 5
  16-bit up counter                                     : 1
  34-bit up counter                                     : 4
-# Registers                                            : 14
- 1-bit register                                        : 7
+# Registers                                            : 13
+ 1-bit register                                        : 6
  2-bit register                                        : 2
  4-bit register                                        : 3
  7-bit register                                        : 1
@@ -344,8 +339,8 @@ Macro Statistics
 # Counters                                             : 5
  16-bit up counter                                     : 1
  34-bit up counter                                     : 4
-# Registers                                            : 34
- Flip-Flops                                            : 34
+# Registers                                            : 33
+ Flip-Flops                                            : 33
 # Comparators                                          : 6
  16-bit comparator greatequal                          : 1
  16-bit comparator lessequal                           : 3
@@ -380,8 +375,8 @@ Final Macro Processing ...
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 181
- Flip-Flops                                            : 181
+# Registers                                            : 180
+ Flip-Flops                                            : 180
 
 =========================================================================
 
@@ -407,7 +402,7 @@ Optimization Goal                  : Speed
 Keep Hierarchy                     : No
 
 Design Statistics
-# IOs                              : 33
+# IOs                              : 29
 
 Cell Usage :
 # BELS                             : 624
@@ -423,17 +418,17 @@ Cell Usage :
 #      MUXF5                       : 2
 #      VCC                         : 1
 #      XORCY                       : 152
-# FlipFlops/Latches                : 181
+# FlipFlops/Latches                : 180
 #      FD                          : 24
 #      FDE                         : 5
-#      FDR                         : 8
+#      FDR                         : 7
 #      FDRE                        : 137
 #      FDS                         : 4
 #      FDSE                        : 3
-# Clock Buffers                    : 2
-#      BUFGP                       : 2
-# IO Buffers                       : 25
-#      IBUF                        : 5
+# Clock Buffers                    : 1
+#      BUFGP                       : 1
+# IO Buffers                       : 26
+#      IBUF                        : 6
 #      OBUF                        : 20
 =========================================================================
 
@@ -442,12 +437,12 @@ Device utilization summary:
 
 Selected Device : 3s100ecp132-4 
 
- Number of Slices:                      137  out of    960    14%  
- Number of Slice Flip Flops:            181  out of   1920     9%  
+ Number of Slices:                      136  out of    960    14%  
+ Number of Slice Flip Flops:            180  out of   1920     9%  
  Number of 4 input LUTs:                256  out of   1920    13%  
- Number of IOs:                          33
+ Number of IOs:                          29
  Number of bonded IOBs:                  27  out of     83    32%  
- Number of GCLKs:                         2  out of     24     8%  
+ Number of GCLKs:                         1  out of     24     4%  
 
 ---------------------------
 Partition Resource Summary:
@@ -473,7 +468,6 @@ Clock Signal                       | Clock buffer(FF name)          | Load  |
 prueba_1_asc/clk_nuevo             | NONE(prueba_1_asc/last_state_3)| 6     |
 clk                                | BUFGP                          | 168   |
 prueba_2_asc/clk_nuevo             | NONE(prueba_2_asc/last_state_3)| 6     |
-btn<0>                             | BUFGP                          | 1     |
 -----------------------------------+--------------------------------+-------+
 INFO:Xst:2169 - HDL ADVISOR - Some clock signals were not automatically buffered by XST with BUFG/BUFR resources. Please use the buffer_type constraint in order to insert these buffers to the clock signals to help prevent skew problems.
 
@@ -573,27 +567,6 @@ Delay:               3.353ns (Levels of Logic = 2)
                                        (68.8% logic, 31.2% route)
 
 =========================================================================
-Timing constraint: Default period analysis for Clock 'btn<0>'
-  Clock period: 1.949ns (frequency: 513.084MHz)
-  Total number of paths / destination ports: 1 / 1
--------------------------------------------------------------------------
-Delay:               1.949ns (Levels of Logic = 0)
-  Source:            dirAux (FF)
-  Destination:       dirAux (FF)
-  Source Clock:      btn<0> rising
-  Destination Clock: btn<0> rising
-
-  Data Path: dirAux to dirAux
-                                Gate     Net
-    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
-    ----------------------------------------  ------------
-     FDR:C->Q              2   0.591   0.447  dirAux (dirAux)
-     FDR:R                     0.911          dirAux
-    ----------------------------------------
-    Total                      1.949ns (1.502ns logic, 0.447ns route)
-                                       (77.1% logic, 22.9% route)
-
-=========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'clk'
   Total number of paths / destination ports: 10 / 10
 -------------------------------------------------------------------------
@@ -613,27 +586,8 @@ Offset:              4.310ns (Levels of Logic = 1)
                                        (89.6% logic, 10.4% route)
 
 =========================================================================
-Timing constraint: Default OFFSET OUT AFTER for Clock 'btn<0>'
-  Total number of paths / destination ports: 1 / 1
--------------------------------------------------------------------------
-Offset:              4.310ns (Levels of Logic = 1)
-  Source:            dirAux (FF)
-  Destination:       leds<2> (PAD)
-  Source Clock:      btn<0> rising
-
-  Data Path: dirAux to leds<2>
-                                Gate     Net
-    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
-    ----------------------------------------  ------------
-     FDR:C->Q              2   0.591   0.447  dirAux (dirAux)
-     OBUF:I->O                 3.272          leds_2_OBUF (leds<2>)
-    ----------------------------------------
-    Total                      4.310ns (3.863ns logic, 0.447ns route)
-                                       (89.6% logic, 10.4% route)
-
-=========================================================================
 Timing constraint: Default path analysis
-  Total number of paths / destination ports: 5 / 5
+  Total number of paths / destination ports: 6 / 6
 -------------------------------------------------------------------------
 Delay:               4.910ns (Levels of Logic = 2)
   Source:            sw<5> (PAD)
@@ -653,13 +607,13 @@ Delay:               4.910ns (Levels of Logic = 2)
 
 
 Total REAL time to Xst completion: 5.00 secs
-Total CPU time to Xst completion: 5.52 secs
+Total CPU time to Xst completion: 5.54 secs
  
 --> 
 
-Total memory usage is 264812 kilobytes
+Total memory usage is 264748 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :   19 (   0 filtered)
+Number of warnings :   17 (   0 filtered)
 Number of infos    :    4 (   0 filtered)
 

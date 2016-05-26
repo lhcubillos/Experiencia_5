@@ -1,7 +1,7 @@
-MO controlador_display NULL controlador_display.v vlg00/controlador__display.bin 1464219326
-MO prueba_1_asc NULL prueba_1_asc.v vlg6D/prueba__1__asc.bin 1464219326
-MO prueba_2_asc NULL prueba_2_asc.v vlg5E/prueba__2__asc.bin 1464219326
-MO main NULL main.v vlg2D/main.bin 1464219326
+MO controlador_display NULL controlador_display.v vlg00/controlador__display.bin 1464271183
+MO prueba_1_asc NULL prueba_1_asc.v vlg6D/prueba__1__asc.bin 1464271183
+MO prueba_2_asc NULL prueba_2_asc.v vlg5E/prueba__2__asc.bin 1464271183
+MO main NULL main.v vlg2D/main.bin 1464271183
 MO controlador_LEDs NULL controlador_LEDs.v vlg2A/controlador___l_e_ds.bin 1464193934
 MO controlador_ascensores NULL controlador_ascensores.v vlg70/controlador__ascensores.bin 1464202058
-MO cola_destinos_externos NULL cola_destinos_externos.v vlg5E/cola__destinos__externos.bin 1464219326
+MO cola_destinos_externos NULL cola_destinos_externos.v vlg5E/cola__destinos__externos.bin 1464271183

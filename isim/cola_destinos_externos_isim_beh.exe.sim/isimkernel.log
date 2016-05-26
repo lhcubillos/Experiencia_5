@@ -1,0 +1,29 @@
+Command line:
+   cola_destinos_externos_isim_beh.exe
+     -simmode  gui
+     -simrunnum  0
+     -socket  52172
+
+Thu May 26 08:57:07 2016
+
+
+ Elaboration Time: 0.078001 sec
+
+ Current Memory Usage: 1318.12 Meg
+
+ Total Signals          : 14
+ Total Nets             : 45
+ Total Signal Drivers   : 6
+ Total Blocks           : 2
+ Total Primitive Blocks : 2
+ Total Processes        : 8
+ Total Traceable Variables  : 24
+ Total Scalar Nets and Variables : 177
+Total Line Count : 27
+
+ Total Simulation Time: 0.078001 sec
+
+ Current Memory Usage: 1318.12 Meg
+
+Thu May 26 08:57:12 2016
+

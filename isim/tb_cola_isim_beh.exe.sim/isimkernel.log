@@ -1,0 +1,29 @@
+Command line:
+   tb_cola_isim_beh.exe
+     -simmode  gui
+     -simrunnum  0
+     -socket  52337
+
+Thu May 26 08:57:20 2016
+
+
+ Elaboration Time: 0.062401 sec
+
+ Current Memory Usage: 1318.13 Meg
+
+ Total Signals          : 15
+ Total Nets             : 45
+ Total Signal Drivers   : 7
+ Total Blocks           : 3
+ Total Primitive Blocks : 2
+ Total Processes        : 11
+ Total Traceable Variables  : 25
+ Total Scalar Nets and Variables : 185
+Total Line Count : 42
+
+ Total Simulation Time: 0.062401 sec
+
+ Current Memory Usage: 688.947 Meg
+
+Thu May 26 09:00:22 2016
+

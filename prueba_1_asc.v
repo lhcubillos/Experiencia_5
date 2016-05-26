@@ -20,6 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 module prueba_1_asc(
 		clk,
+		
 		//destino,
 		
 		piso,
@@ -51,10 +52,10 @@ module prueba_1_asc(
 	
 	
 	reg [33:0] ctr_en_piso;
-	reg state_andando;
+	reg [1:0] state_andando;
 	
-	parameter IDLE = 0, andando = 1;
-	parameter en_piso = 100000000;
+	parameter IDLE = 2'b00, andando = 2'b01, open_doors = 2'b10;
+	parameter tiempo_en_piso = 100000000;
 	
 	parameter divider = 50000000;
 	parameter minus_one = 2'b00, one = 2'b01, two = 2'b10, three = 2'b11;
@@ -98,33 +99,7 @@ module prueba_1_asc(
 		end
 		else direccion = 2'b00;
 	
-//		case (state)
-//			minus_one: begin
-//				state = one;
-//				direccion = 2'b01; //subiendo
-//			end
-//			
-//			one: begin
-//				if (direccion == 2'b10) begin
-//					state = minus_one;
-//					direccion = 2'b00;
-//				end
-//				else if (direccion == 2'b01) state = two;
-//			end
-//			
-//			two: begin
-//				if (direccion == 2'b10) state = one;
-//				else if (direccion ==2'b01)begin
-//					state = three;
-//					direccion = 2'b00;
-//				end
-//			end
-//			
-//			three: begin
-//				state = two;
-//				direccion = 2'b10; //bajando
-//			end
-//		endcase
+
 	end
 	
 	always @(posedge(clk)) begin
@@ -136,26 +111,33 @@ module prueba_1_asc(
 					disp_ctr <= 0;
 					if (clk_nuevo == 1) begin
 						if (state == destino) begin
-							state_andando <= IDLE;
+							state_andando <= open_doors;
 							puertas_abiertas <= 1; //Solo cuando se llega.
 						end
 					end
 				end
 			end
 			
-			IDLE: begin //Esto deberia pasar solo cuando se llega al piso de destino.
+			open_doors: begin //Esto deberia pasar solo cuando se llega al piso de destino.
 				ctr_en_piso <= ctr_en_piso + 1;
 				puertas_abiertas <= 1;
-				if (ctr_en_piso == en_piso) begin
-//					if (address < 9)
-//						address <= address + 1;
-//					else address <= 0;
+				if (ctr_en_piso == tiempo_en_piso) begin
+					if (address < 9)
+						address <= address + 1;
+					else address <= 0;
 					ctr_en_piso <= 0;
 					//destino = one;
-					state_andando <= andando;
-					puertas_abiertas <= 0;
+					state_andando <= IDLE;
+					//puertas_abiertas <= 0;
 					//if (state != destino)
 						
+				end
+			end
+			
+			IDLE: begin
+				if (state != destino) begin
+					state_andando <= andando;
+					puertas_abiertas <= 0;
 				end
 			end
 		endcase

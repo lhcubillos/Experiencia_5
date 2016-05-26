@@ -34,8 +34,8 @@ module cola_destinos_externos(
 
 	always @ (address)
 	begin
-		Mem[0] = 2'b11;
-		Mem[1] = three;
+		Mem[0] = three;
+		Mem[1] = minus_one;
 		Mem[2] = two;
 		Mem[3] = one;
 		Mem[4] = three;
@@ -44,7 +44,10 @@ module cola_destinos_externos(
 		Mem[7] = two;
 		Mem[8] = three;
 		Mem[9] = one;
+		
+		destino = Mem[address];
 	end
+	
 
 
 endmodule

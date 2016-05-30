@@ -57,19 +57,21 @@ module controlador_ascensores(
 	
 	reg state_address;
 	
+	reg [33:0] contador;
+	
 	reg [9:0] address;
 	wire [1:0] salida_cola;
 	
 	wire [1:0] dist_piso_dest_asc_1;
 	wire [1:0] dist_piso_dest_asc_2;
 	
-//	assign dist_piso_dest_asc_1 = (piso_asc_1>salida_cola)?(piso_asc_1-salida_cola):(salida_cola-piso_asc_1);
-//	assign dist_piso_dest_asc_2 = (piso_asc_2>salida_cola)?(piso_asc_2-salida_cola):(salida_cola-piso_asc_2);
+	assign dist_piso_dest_asc_1 = (piso_asc_1>salida_cola)?(piso_asc_1-salida_cola):(salida_cola-piso_asc_1);
+	assign dist_piso_dest_asc_2 = (piso_asc_2>salida_cola)?(piso_asc_2-salida_cola):(salida_cola-piso_asc_2);
 //	
-	assign dist_piso_dest_asc_1 = (piso_asc_1>destino)?(piso_asc_1-destino):(destino-piso_asc_1);
-	assign dist_piso_dest_asc_2 = (piso_asc_2>destino)?(piso_asc_2-destino):(destino-piso_asc_2);
+//	assign dist_piso_dest_asc_1 = (piso_asc_1>destino)?(piso_asc_1-destino):(destino-piso_asc_1);
+//	assign dist_piso_dest_asc_2 = (piso_asc_2>destino)?(piso_asc_2-destino):(destino-piso_asc_2);
 	
-	parameter INICIO = 1'b0, SUMA = 1'b1;
+	parameter CAMBIO = 1'b0, ESPERAR = 1'b1;
 	parameter FINFIFO = 9;
 	
 	cola_destinos_externos cola_externos(
@@ -77,9 +79,11 @@ module controlador_ascensores(
 		.destino(salida_cola)
 	);
 	
+	parameter tiempo_en_piso = 100000000;
+	
 	initial begin
 		address = 0;
-		state_address = INICIO;
+		state_address = CAMBIO;
 	end
 	
 	
@@ -131,36 +135,41 @@ module controlador_ascensores(
 //	
 
 always @(posedge(clk))
-	begin
-//		case (state_address)
-//			INICIO:
-				//Si los dos estan disponibles
-				if (!ocupado_asc_1 && !ocupado_asc_2)
-					if (dist_piso_dest_asc_1 < dist_piso_dest_asc_2) begin
-						destino_asc_1 = {1'b0,destino};
-						if (address < FINFIFO)
-							address = address +1;
-					end else begin
-						//destino_asc_1 = 3'b100;
-						destino_asc_2 = {1'b0,destino};
-						if (address < FINFIFO)
-							address = address +1;
-
-					end
-//				else if (!ocupado_asc_1) begin
-//					destino_asc_1 = {1'b0,destino};
-//				end else if (!ocupado_asc_2) begin
-//					//destino_asc_1 = 3'b100;
-//					destino_asc_2 = {1'b0,destino};
-//				end else begin
-//					state_address = INICIO;
-//				end
-//			SUMA: begin
-//				if (address < FINFIFO)
-//					address = address + 1;
-//				state_address = INICIO;
-//			end
-//		endcase
-	end
+	case (state_address)
+		CAMBIO:
+			//Si los dos estan disponibles
+			if (!ocupado_asc_1 && !ocupado_asc_2) begin
+				if (dist_piso_dest_asc_1 < dist_piso_dest_asc_2) begin
+					destino_asc_1 = {1'b0,salida_cola};
+					state_address = ESPERAR;
+					if (address < FINFIFO)
+						address = address +1'b1;
+				end else begin
+					//destino_asc_1 = 3'b100;
+					destino_asc_2 = {1'b0,salida_cola};
+					if (address < FINFIFO)
+						address = address +1'b1;					
+					state_address = ESPERAR;
+				end
+			end else if (!ocupado_asc_1) begin
+				destino_asc_1 = {1'b0,salida_cola};
+				state_address = ESPERAR;
+					if (address < FINFIFO)
+						address = address +1'b1;
+			end else if (!ocupado_asc_2) begin
+				destino_asc_2 = {1'b0,salida_cola};
+				state_address = ESPERAR;
+				if (address < FINFIFO)
+					address = address +1'b1;
+			end
+				
+		ESPERAR: begin
+			contador = contador + 1;
+			if (contador == tiempo_en_piso) begin
+				state_address = CAMBIO;
+				contador = 0;
+			end
+		end
+	endcase
 	
 endmodule

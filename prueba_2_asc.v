@@ -69,7 +69,7 @@ module prueba_2_asc(
 	initial begin
 		address = 0;
 		state = three;
-		state_andando = andando;
+		state_andando = open_doors;
 		//last_state = minus_one;
 		//destino = three;
 		direccion = 2'b10;
@@ -77,7 +77,7 @@ module prueba_2_asc(
 		disp_ctr = 0;
 		ctr_en_piso = 0;
 		puertas_abiertas = 0;
-		ocupado = 0;
+		ocupado = 1;
 	end
 	
 //	cola_destinos_externos cola_externos(

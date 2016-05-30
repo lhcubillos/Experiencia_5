@@ -138,9 +138,10 @@ Analyzing hierarchy for module <sync_fifo> in library <work> with parameters.
 	MAX_COUNT = "00000000000000000000000000100000"
 
 Analyzing hierarchy for module <controlador_ascensores> in library <work> with parameters.
+	CAMBIO = "0"
+	ESPERAR = "1"
 	FINFIFO = "00000000000000000000000000001001"
-	INICIO = "0"
-	SUMA = "1"
+	tiempo_en_piso = "00000101111101011110000100000000"
 
 Analyzing hierarchy for module <controlador_display> in library <work>.
 
@@ -192,9 +193,10 @@ Analyzing module <sync_fifo> in library <work>.
 Module <sync_fifo> is correct for synthesis.
  
 Analyzing module <controlador_ascensores> in library <work>.
+	CAMBIO = 1'b0
+	ESPERAR = 1'b1
 	FINFIFO = 32'sb00000000000000000000000000001001
-	INICIO = 1'b0
-	SUMA = 1'b1
+	tiempo_en_piso = 32'sb00000101111101011110000100000000
 Module <controlador_ascensores> is correct for synthesis.
  
 Analyzing module <cola_destinos_externos> in library <work>.
@@ -310,7 +312,7 @@ WARNING:Xst:1780 - Signal <address> is never used or assigned. This unconnected 
     | Inputs             | 5                                              |
     | Outputs            | 4                                              |
     | Clock              | clk                       (rising_edge)        |
-    | Power Up State     | 01                                             |
+    | Power Up State     | 10                                             |
     | Encoding           | automatic                                      |
     | Implementation     | LUT                                            |
     -----------------------------------------------------------------------
@@ -356,7 +358,7 @@ WARNING:Xst:1780 - Signal <address> is never used or assigned. This unconnected 
     | Inputs             | 5                                              |
     | Outputs            | 4                                              |
     | Clock              | clk                       (rising_edge)        |
-    | Power Up State     | 01                                             |
+    | Power Up State     | 10                                             |
     | Encoding           | automatic                                      |
     | Implementation     | LUT                                            |
     -----------------------------------------------------------------------
@@ -382,7 +384,7 @@ Synthesizing Unit <cola_destinos_externos>.
     Related source file is "cola_destinos_externos.v".
 WARNING:Xst:647 - Input <address<7:4>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:646 - Signal <Mem> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-    Found 10x2-bit ROM for signal <$COND_5>.
+    Found 10x2-bit ROM for signal <$COND_6>.
     Summary:
 	inferred   1 ROM(s).
 Unit <cola_destinos_externos> synthesized.
@@ -393,21 +395,24 @@ Synthesizing Unit <controlador_ascensores>.
 WARNING:Xst:647 - Input <direccion_asc_1> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:647 - Input <direccion_asc_2> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:647 - Input <destino> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
-WARNING:Xst:1780 - Signal <state_address> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
     Found 3-bit register for signal <destino_asc_1>.
     Found 3-bit register for signal <destino_asc_2>.
     Found 10-bit up counter for signal <address>.
-    Found 10-bit comparator greatequal for signal <address$cmp_ge0000> created at line 141.
-    Found 2-bit comparator greatequal for signal <destino_asc_1$cmp_ge0000> created at line 139.
-    Found 2-bit comparator less for signal <destino_asc_2$cmp_lt0000> created at line 139.
+    Found 10-bit adder for signal <address$add0000> created at line 146.
+    Found 10-bit comparator greatequal for signal <address$cmp_ge0000> created at line 145.
+    Found 34-bit up counter for signal <contador>.
+    Found 2-bit comparator greatequal for signal <destino_asc_1$cmp_ge0000> created at line 142.
+    Found 2-bit comparator less for signal <destino_asc_2$cmp_lt0000> created at line 142.
     Found 2-bit subtractor for signal <dist_piso_dest_asc_1>.
-    Found 2-bit comparator greater for signal <dist_piso_dest_asc_1$cmp_gt0000> created at line 66.
+    Found 2-bit comparator greater for signal <dist_piso_dest_asc_1$cmp_gt0000> created at line 68.
     Found 2-bit subtractor for signal <dist_piso_dest_asc_2>.
-    Found 2-bit comparator greater for signal <dist_piso_dest_asc_2$cmp_gt0000> created at line 67.
+    Found 2-bit comparator greater for signal <dist_piso_dest_asc_2$cmp_gt0000> created at line 69.
+    Found 34-bit adder for signal <old_contador_3$add0000> created at line 167.
+    Found 1-bit register for signal <state_address>.
     Summary:
-	inferred   1 Counter(s).
-	inferred   6 D-type flip-flop(s).
-	inferred   2 Adder/Subtractor(s).
+	inferred   2 Counter(s).
+	inferred   7 D-type flip-flop(s).
+	inferred   4 Adder/Subtractor(s).
 	inferred   5 Comparator(s).
 Unit <controlador_ascensores> synthesized.
 
@@ -436,17 +441,19 @@ Macro Statistics
  32x2-bit dual-port RAM                                : 1
 # ROMs                                                 : 1
  10x2-bit ROM                                          : 1
-# Adders/Subtractors                                   : 3
+# Adders/Subtractors                                   : 5
+ 10-bit adder                                          : 1
  2-bit subtractor                                      : 2
+ 34-bit adder                                          : 1
  6-bit addsub                                          : 1
-# Counters                                             : 9
+# Counters                                             : 10
  10-bit up counter                                     : 1
  16-bit up counter                                     : 1
  2-bit up counter                                      : 1
- 34-bit up counter                                     : 4
+ 34-bit up counter                                     : 5
  5-bit up counter                                      : 2
-# Registers                                            : 15
- 1-bit register                                        : 7
+# Registers                                            : 16
+ 1-bit register                                        : 8
  2-bit register                                        : 2
  3-bit register                                        : 2
  4-bit register                                        : 1
@@ -476,8 +483,8 @@ Optimizing FSM <prueba_2_asc/state_andando/FSM> on signal <state_andando[1:2]> w
  State | Encoding
 -------------------
  00    | 10
- 01    | 00
- 10    | 01
+ 01    | 01
+ 10    | 00
 -------------------
 Analyzing FSM <FSM_2> for best encoding.
 Optimizing FSM <prueba_2_asc/state/FSM> on signal <state[1:2]> with user encoding.
@@ -495,8 +502,8 @@ Optimizing FSM <prueba_1_asc/state_andando/FSM> on signal <state_andando[1:2]> w
  State | Encoding
 -------------------
  00    | 10
- 01    | 00
- 10    | 01
+ 01    | 01
+ 10    | 00
 -------------------
 Analyzing FSM <FSM_0> for best encoding.
 Optimizing FSM <prueba_1_asc/state/FSM> on signal <state[1:2]> with sequential encoding.
@@ -514,8 +521,8 @@ WARNING:Xst:1290 - Hierarchical block <sync_fifo> is unconnected in block <main>
    It will be removed from the design.
 INFO:Xst:2261 - The FF/Latch <sseg_3> in Unit <controlador_display> is equivalent to the following 3 FFs/Latches, which will be removed : <sseg_4> <sseg_5> <sseg_6> 
 WARNING:Xst:1710 - FF/Latch <sseg_3> (without init value) has a constant value of 0 in block <controlador_display>. This FF/Latch will be trimmed during the optimization process.
-WARNING:Xst:2677 - Node <destino_asc_2_2> of sequential type is unconnected in block <controlador_ascensores>.
 WARNING:Xst:2677 - Node <destino_asc_1_2> of sequential type is unconnected in block <controlador_ascensores>.
+WARNING:Xst:2677 - Node <destino_asc_2_2> of sequential type is unconnected in block <controlador_ascensores>.
 WARNING:Xst:2404 -  FFs/Latches <sseg<6:3>> (without init value) have a constant value of 0 in block <controlador_display>.
 WARNING:Xst:2404 -  FFs/Latches <destino_asc_1<2:2>> (without init value) have a constant value of 0 in block <controlador_ascensores>.
 WARNING:Xst:2404 -  FFs/Latches <destino_asc_2<2:2>> (without init value) have a constant value of 0 in block <controlador_ascensores>.
@@ -548,17 +555,19 @@ Macro Statistics
  32x2-bit dual-port distributed RAM                    : 1
 # ROMs                                                 : 1
  10x2-bit ROM                                          : 1
-# Adders/Subtractors                                   : 3
+# Adders/Subtractors                                   : 5
+ 10-bit adder                                          : 1
  2-bit subtractor                                      : 2
+ 34-bit adder                                          : 1
  6-bit addsub                                          : 1
-# Counters                                             : 9
+# Counters                                             : 10
  10-bit up counter                                     : 1
  16-bit up counter                                     : 1
  2-bit up counter                                      : 1
- 34-bit up counter                                     : 4
+ 34-bit up counter                                     : 5
  5-bit up counter                                      : 2
-# Registers                                            : 36
- Flip-Flops                                            : 36
+# Registers                                            : 37
+ Flip-Flops                                            : 37
 # Comparators                                          : 20
  10-bit comparator greatequal                          : 1
  16-bit comparator greatequal                          : 1
@@ -598,7 +607,7 @@ Optimizing unit <controlador_ascensores> ...
 
 Mapping all equations...
 Building and optimizing final netlist ...
-Found area constraint ratio of 100 (+ 5) on block main, actual ratio is 16.
+Found area constraint ratio of 100 (+ 5) on block main, actual ratio is 22.
 
 Final Macro Processing ...
 
@@ -606,8 +615,8 @@ Final Macro Processing ...
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 196
- Flip-Flops                                            : 196
+# Registers                                            : 231
+ Flip-Flops                                            : 231
 
 =========================================================================
 
@@ -636,28 +645,29 @@ Design Statistics
 # IOs                              : 29
 
 Cell Usage :
-# BELS                             : 691
+# BELS                             : 946
 #      GND                         : 1
-#      INV                         : 16
-#      LUT1                        : 162
-#      LUT2                        : 36
-#      LUT2_L                      : 1
-#      LUT3                        : 14
-#      LUT3_L                      : 1
-#      LUT4                        : 65
-#      LUT4_D                      : 2
+#      INV                         : 18
+#      LUT1                        : 228
+#      LUT2                        : 34
+#      LUT2_D                      : 3
+#      LUT2_L                      : 3
+#      LUT3                        : 16
+#      LUT3_D                      : 1
+#      LUT3_L                      : 2
+#      LUT4                        : 88
+#      LUT4_D                      : 1
 #      LUT4_L                      : 3
-#      MUXCY                       : 221
-#      MUXF5                       : 5
-#      MUXF6                       : 1
+#      MUXCY                       : 305
+#      MUXF5                       : 2
 #      VCC                         : 1
-#      XORCY                       : 162
-# FlipFlops/Latches                : 196
-#      FD                          : 27
+#      XORCY                       : 240
+# FlipFlops/Latches                : 231
+#      FD                          : 24
 #      FDE                         : 23
-#      FDRE                        : 137
-#      FDS                         : 6
-#      FDSE                        : 3
+#      FDRE                        : 171
+#      FDS                         : 9
+#      FDSE                        : 4
 # Clock Buffers                    : 1
 #      BUFGP                       : 1
 # IO Buffers                       : 20
@@ -669,9 +679,9 @@ Device utilization summary:
 
 Selected Device : 3s100ecp132-4 
 
- Number of Slices:                      155  out of    960    16%  
- Number of Slice Flip Flops:            196  out of   1920    10%  
- Number of 4 input LUTs:                300  out of   1920    15%  
+ Number of Slices:                      210  out of    960    21%  
+ Number of Slice Flip Flops:            231  out of   1920    12%  
+ Number of 4 input LUTs:                397  out of   1920    20%  
  Number of IOs:                          29
  Number of bonded IOBs:                  21  out of     83    25%  
  Number of GCLKs:                         1  out of     24     4%  
@@ -697,7 +707,7 @@ Clock Information:
 -----------------------------------+----------------------------------+-------+
 Clock Signal                       | Clock buffer(FF name)            | Load  |
 -----------------------------------+----------------------------------+-------+
-clk                                | BUFGP                            | 188   |
+clk                                | BUFGP                            | 223   |
 prueba_1_asc/clk_nuevo             | NONE(prueba_1_asc/state_FSM_FFd2)| 4     |
 prueba_2_asc/clk_nuevo             | NONE(prueba_2_asc/state_FSM_FFd2)| 4     |
 -----------------------------------+----------------------------------+-------+
@@ -711,9 +721,9 @@ Timing Summary:
 ---------------
 Speed Grade: -4
 
-   Minimum period: 7.821ns (Maximum Frequency: 127.861MHz)
+   Minimum period: 9.132ns (Maximum Frequency: 109.507MHz)
    Minimum input arrival time before clock: No path found
-   Maximum output required time after clock: 5.699ns
+   Maximum output required time after clock: 5.653ns
    Maximum combinational path delay: No path found
 
 Timing Detail:
@@ -722,37 +732,65 @@ All values displayed in nanoseconds (ns)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'clk'
-  Clock period: 7.821ns (frequency: 127.861MHz)
-  Total number of paths / destination ports: 9147 / 492
+  Clock period: 9.132ns (frequency: 109.507MHz)
+  Total number of paths / destination ports: 30805 / 599
 -------------------------------------------------------------------------
-Delay:               7.821ns (Levels of Logic = 6)
-  Source:            controlador_ascensores/address_1 (FF)
-  Destination:       controlador_ascensores/destino_asc_2_1 (FF)
+Delay:               9.132ns (Levels of Logic = 34)
+  Source:            controlador_ascensores/contador_1 (FF)
+  Destination:       controlador_ascensores/contador_33 (FF)
   Source Clock:      clk rising
   Destination Clock: clk rising
 
-  Data Path: controlador_ascensores/address_1 to controlador_ascensores/destino_asc_2_1
+  Data Path: controlador_ascensores/contador_1 to controlador_ascensores/contador_33
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDE:C->Q              4   0.591   0.762  controlador_ascensores/address_1 (controlador_ascensores/address_1)
-     LUT4:I0->O            6   0.704   0.704  controlador_ascensores/cola_externos/Mrom__COND_512 (controlador_ascensores/cola_externos/Mrom__COND_5)
-     LUT4:I2->O            2   0.704   0.622  controlador_ascensores/dist_piso_dest_asc_2_mux0000<0>1 (controlador_ascensores/dist_piso_dest_asc_2_mux0000<0>)
-     LUT4:I0->O            1   0.704   0.000  controlador_ascensores/destino_asc_1_not000114 (controlador_ascensores/destino_asc_1_not000113)
-     MUXF5:I1->O           1   0.321   0.000  controlador_ascensores/destino_asc_1_not00011_f5 (controlador_ascensores/destino_asc_1_not00011_f5)
-     MUXF6:I0->O           2   0.521   0.482  controlador_ascensores/destino_asc_1_not00011_f6 (controlador_ascensores/N01)
-     LUT3:I2->O            2   0.704   0.447  controlador_ascensores/destino_asc_2_not00011 (controlador_ascensores/destino_asc_2_not0001)
-     FDE:CE                    0.555          controlador_ascensores/destino_asc_2_0
+     FDRE:C->Q             2   0.591   0.622  controlador_ascensores/contador_1 (controlador_ascensores/contador_1)
+     LUT1:I0->O            1   0.704   0.000  controlador_ascensores/Madd_old_contador_3_add0000_cy<1>_rt (controlador_ascensores/Madd_old_contador_3_add0000_cy<1>_rt)
+     MUXCY:S->O            1   0.464   0.000  controlador_ascensores/Madd_old_contador_3_add0000_cy<1> (controlador_ascensores/Madd_old_contador_3_add0000_cy<1>)
+     MUXCY:CI->O           1   0.059   0.000  controlador_ascensores/Madd_old_contador_3_add0000_cy<2> (controlador_ascensores/Madd_old_contador_3_add0000_cy<2>)
+     MUXCY:CI->O           1   0.059   0.000  controlador_ascensores/Madd_old_contador_3_add0000_cy<3> (controlador_ascensores/Madd_old_contador_3_add0000_cy<3>)
+     MUXCY:CI->O           1   0.059   0.000  controlador_ascensores/Madd_old_contador_3_add0000_cy<4> (controlador_ascensores/Madd_old_contador_3_add0000_cy<4>)
+     MUXCY:CI->O           1   0.059   0.000  controlador_ascensores/Madd_old_contador_3_add0000_cy<5> (controlador_ascensores/Madd_old_contador_3_add0000_cy<5>)
+     MUXCY:CI->O           1   0.059   0.000  controlador_ascensores/Madd_old_contador_3_add0000_cy<6> (controlador_ascensores/Madd_old_contador_3_add0000_cy<6>)
+     MUXCY:CI->O           1   0.059   0.000  controlador_ascensores/Madd_old_contador_3_add0000_cy<7> (controlador_ascensores/Madd_old_contador_3_add0000_cy<7>)
+     MUXCY:CI->O           1   0.059   0.000  controlador_ascensores/Madd_old_contador_3_add0000_cy<8> (controlador_ascensores/Madd_old_contador_3_add0000_cy<8>)
+     MUXCY:CI->O           1   0.059   0.000  controlador_ascensores/Madd_old_contador_3_add0000_cy<9> (controlador_ascensores/Madd_old_contador_3_add0000_cy<9>)
+     MUXCY:CI->O           1   0.059   0.000  controlador_ascensores/Madd_old_contador_3_add0000_cy<10> (controlador_ascensores/Madd_old_contador_3_add0000_cy<10>)
+     MUXCY:CI->O           1   0.059   0.000  controlador_ascensores/Madd_old_contador_3_add0000_cy<11> (controlador_ascensores/Madd_old_contador_3_add0000_cy<11>)
+     MUXCY:CI->O           1   0.059   0.000  controlador_ascensores/Madd_old_contador_3_add0000_cy<12> (controlador_ascensores/Madd_old_contador_3_add0000_cy<12>)
+     MUXCY:CI->O           1   0.059   0.000  controlador_ascensores/Madd_old_contador_3_add0000_cy<13> (controlador_ascensores/Madd_old_contador_3_add0000_cy<13>)
+     MUXCY:CI->O           1   0.059   0.000  controlador_ascensores/Madd_old_contador_3_add0000_cy<14> (controlador_ascensores/Madd_old_contador_3_add0000_cy<14>)
+     MUXCY:CI->O           1   0.059   0.000  controlador_ascensores/Madd_old_contador_3_add0000_cy<15> (controlador_ascensores/Madd_old_contador_3_add0000_cy<15>)
+     MUXCY:CI->O           1   0.059   0.000  controlador_ascensores/Madd_old_contador_3_add0000_cy<16> (controlador_ascensores/Madd_old_contador_3_add0000_cy<16>)
+     MUXCY:CI->O           1   0.059   0.000  controlador_ascensores/Madd_old_contador_3_add0000_cy<17> (controlador_ascensores/Madd_old_contador_3_add0000_cy<17>)
+     MUXCY:CI->O           1   0.059   0.000  controlador_ascensores/Madd_old_contador_3_add0000_cy<18> (controlador_ascensores/Madd_old_contador_3_add0000_cy<18>)
+     MUXCY:CI->O           1   0.059   0.000  controlador_ascensores/Madd_old_contador_3_add0000_cy<19> (controlador_ascensores/Madd_old_contador_3_add0000_cy<19>)
+     MUXCY:CI->O           1   0.059   0.000  controlador_ascensores/Madd_old_contador_3_add0000_cy<20> (controlador_ascensores/Madd_old_contador_3_add0000_cy<20>)
+     MUXCY:CI->O           1   0.059   0.000  controlador_ascensores/Madd_old_contador_3_add0000_cy<21> (controlador_ascensores/Madd_old_contador_3_add0000_cy<21>)
+     MUXCY:CI->O           1   0.059   0.000  controlador_ascensores/Madd_old_contador_3_add0000_cy<22> (controlador_ascensores/Madd_old_contador_3_add0000_cy<22>)
+     XORCY:CI->O           2   0.804   0.622  controlador_ascensores/Madd_old_contador_3_add0000_xor<23> (controlador_ascensores/old_contador_3_add0000<23>)
+     LUT3:I0->O            1   0.704   0.000  controlador_ascensores/contador_and0000_wg_lut<0> (controlador_ascensores/contador_and0000_wg_lut<0>)
+     MUXCY:S->O            1   0.464   0.000  controlador_ascensores/contador_and0000_wg_cy<0> (controlador_ascensores/contador_and0000_wg_cy<0>)
+     MUXCY:CI->O           1   0.059   0.000  controlador_ascensores/contador_and0000_wg_cy<1> (controlador_ascensores/contador_and0000_wg_cy<1>)
+     MUXCY:CI->O           1   0.059   0.000  controlador_ascensores/contador_and0000_wg_cy<2> (controlador_ascensores/contador_and0000_wg_cy<2>)
+     MUXCY:CI->O           1   0.059   0.000  controlador_ascensores/contador_and0000_wg_cy<3> (controlador_ascensores/contador_and0000_wg_cy<3>)
+     MUXCY:CI->O           1   0.059   0.000  controlador_ascensores/contador_and0000_wg_cy<4> (controlador_ascensores/contador_and0000_wg_cy<4>)
+     MUXCY:CI->O           1   0.059   0.000  controlador_ascensores/contador_and0000_wg_cy<5> (controlador_ascensores/contador_and0000_wg_cy<5>)
+     MUXCY:CI->O           1   0.059   0.000  controlador_ascensores/contador_and0000_wg_cy<6> (controlador_ascensores/contador_and0000_wg_cy<6>)
+     MUXCY:CI->O           1   0.059   0.000  controlador_ascensores/contador_and0000_wg_cy<7> (controlador_ascensores/contador_and0000_wg_cy<7>)
+     MUXCY:CI->O          34   0.331   1.263  controlador_ascensores/contador_and0000_wg_cy<8> (controlador_ascensores/contador_and0000)
+     FDRE:R                    0.911          controlador_ascensores/contador_0
     ----------------------------------------
-    Total                      7.821ns (4.804ns logic, 3.017ns route)
-                                       (61.4% logic, 38.6% route)
+    Total                      9.132ns (6.625ns logic, 2.507ns route)
+                                       (72.5% logic, 27.5% route)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'prueba_1_asc/clk_nuevo'
-  Clock period: 3.262ns (frequency: 306.560MHz)
+  Clock period: 3.448ns (frequency: 290.023MHz)
   Total number of paths / destination ports: 11 / 6
 -------------------------------------------------------------------------
-Delay:               3.262ns (Levels of Logic = 1)
+Delay:               3.448ns (Levels of Logic = 1)
   Source:            prueba_1_asc/state_FSM_FFd1 (FF)
   Destination:       prueba_1_asc/state_FSM_FFd2 (FF)
   Source Clock:      prueba_1_asc/clk_nuevo rising
@@ -763,18 +801,18 @@ Delay:               3.262ns (Levels of Logic = 1)
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
      FDE:C->Q             12   0.591   0.965  prueba_1_asc/state_FSM_FFd1 (prueba_1_asc/state_FSM_FFd1)
-     LUT4:I3->O            2   0.704   0.447  prueba_1_asc/state_not00011 (prueba_1_asc/state_not0001)
+     LUT4:I3->O            5   0.704   0.633  prueba_1_asc/state_not00011 (prueba_1_asc/state_not0001)
      FDE:CE                    0.555          prueba_1_asc/state_FSM_FFd1
     ----------------------------------------
-    Total                      3.262ns (1.850ns logic, 1.412ns route)
-                                       (56.7% logic, 43.3% route)
+    Total                      3.448ns (1.850ns logic, 1.598ns route)
+                                       (53.7% logic, 46.3% route)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'prueba_2_asc/clk_nuevo'
-  Clock period: 3.398ns (frequency: 294.291MHz)
+  Clock period: 3.258ns (frequency: 306.937MHz)
   Total number of paths / destination ports: 12 / 6
 -------------------------------------------------------------------------
-Delay:               3.398ns (Levels of Logic = 1)
+Delay:               3.258ns (Levels of Logic = 1)
   Source:            prueba_2_asc/state_FSM_FFd2 (FF)
   Destination:       prueba_2_asc/state_FSM_FFd2 (FF)
   Source Clock:      prueba_2_asc/clk_nuevo rising
@@ -785,17 +823,17 @@ Delay:               3.398ns (Levels of Logic = 1)
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
      FDE:C->Q             10   0.591   0.961  prueba_2_asc/state_FSM_FFd2 (prueba_2_asc/state_FSM_FFd2)
-     LUT4:I1->O            4   0.704   0.587  prueba_2_asc/state_not00011 (prueba_2_asc/state_not0001)
+     LUT4:I1->O            2   0.704   0.447  prueba_2_asc/state_not00011 (prueba_2_asc/state_not0001)
      FDE:CE                    0.555          prueba_2_asc/state_FSM_FFd1
     ----------------------------------------
-    Total                      3.398ns (1.850ns logic, 1.548ns route)
-                                       (54.4% logic, 45.6% route)
+    Total                      3.258ns (1.850ns logic, 1.408ns route)
+                                       (56.8% logic, 43.2% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'clk'
   Total number of paths / destination ports: 18 / 18
 -------------------------------------------------------------------------
-Offset:              5.699ns (Levels of Logic = 2)
+Offset:              5.653ns (Levels of Logic = 2)
   Source:            prueba_1_asc/puertas_abiertas (FF)
   Destination:       leds<4> (PAD)
   Source Clock:      clk rising
@@ -804,12 +842,12 @@ Offset:              5.699ns (Levels of Logic = 2)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDS:C->Q              5   0.591   0.712  prueba_1_asc/puertas_abiertas (prueba_1_asc/puertas_abiertas)
+     FDS:C->Q              4   0.591   0.666  prueba_1_asc/puertas_abiertas (prueba_1_asc/puertas_abiertas)
      LUT2:I1->O            1   0.704   0.420  leds_4_mux00001 (leds_4_OBUF)
      OBUF:I->O                 3.272          leds_4_OBUF (leds<4>)
     ----------------------------------------
-    Total                      5.699ns (4.567ns logic, 1.132ns route)
-                                       (80.1% logic, 19.9% route)
+    Total                      5.653ns (4.567ns logic, 1.086ns route)
+                                       (80.8% logic, 19.2% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'prueba_1_asc/clk_nuevo'
@@ -855,13 +893,13 @@ Offset:              5.582ns (Levels of Logic = 2)
 
 
 Total REAL time to Xst completion: 6.00 secs
-Total CPU time to Xst completion: 5.91 secs
+Total CPU time to Xst completion: 6.39 secs
  
 --> 
 
-Total memory usage is 268332 kilobytes
+Total memory usage is 270060 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :   41 (   0 filtered)
+Number of warnings :   40 (   0 filtered)
 Number of infos    :    6 (   0 filtered)
 

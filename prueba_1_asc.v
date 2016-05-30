@@ -69,15 +69,15 @@ module prueba_1_asc(
 	initial begin
 		address = 0;
 		state = one;
-		state_andando = andando;
+		state_andando = open_doors;
 		//last_state = minus_one;
 		//destino = three;
-		direccion = 2'b01;
+		direccion = 2'b00;
 		clk_nuevo = 0;
 		disp_ctr = 0;
 		ctr_en_piso = 0;
 		puertas_abiertas = 0;
-		ocupado = 0;
+		//ocupado = 1;
 	end
 	
 //	cola_destinos_externos cola_externos(
@@ -145,7 +145,7 @@ module prueba_1_asc(
 			IDLE: begin
 				ocupado <= 0;
 				if (state != destino[1:0]) begin
-					ocupado <= 1;
+					//ocupado <= 1;
 					state_andando <= andando;
 					puertas_abiertas <= 0;
 				end

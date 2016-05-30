@@ -1,19 +1,19 @@
-Running: C:\Xilinx\14.7\ISE_DS\ISE\bin\nt64\unwrapped\fuse.exe -intstyle ise -incremental -lib unisims_ver -lib unimacro_ver -lib xilinxcorelib_ver -o C:/Users/LH Cubillos/Desktop/Experiencia_5/tb_cola_isim_beh.exe -prj C:/Users/LH Cubillos/Desktop/Experiencia_5/tb_cola_beh.prj work.tb_cola work.glbl 
+Running: C:\Xilinx\14.7\ISE_DS\ISE\bin\nt64\unwrapped\fuse.exe -intstyle ise -incremental -lib unisims_ver -lib unimacro_ver -lib xilinxcorelib_ver -o C:/Users/LH Cubillos/Desktop/Experiencia_5/tb_fifo_isim_beh.exe -prj C:/Users/LH Cubillos/Desktop/Experiencia_5/tb_fifo_beh.prj work.tb_fifo work.glbl 
 ISim P.20131013 (signature 0x7708f090)
 Number of CPUs detected in this system: 8
 Turning on mult-threading, number of parallel sub-compilation jobs: 16 
 Determining compilation order of HDL files
-Analyzing Verilog file "C:/Users/LH Cubillos/Desktop/Experiencia_5/cola_destinos_externos.v" into library work
-Analyzing Verilog file "C:/Users/LH Cubillos/Desktop/Experiencia_5/tb_cola.v" into library work
+Analyzing Verilog file "C:/Users/LH Cubillos/Desktop/Experiencia_5/FIFO_v.v" into library work
+Analyzing Verilog file "C:/Users/LH Cubillos/Desktop/Experiencia_5/tb_fifo.v" into library work
 Analyzing Verilog file "C:/Xilinx/14.7/ISE_DS/ISE//verilog/src/glbl.v" into library work
 Starting static elaboration
 Completed static elaboration
-Compiling module cola_destinos_externos
-Compiling module tb_cola
+Compiling module FIFO_v
+Compiling module tb_fifo
 Compiling module glbl
 Time Resolution for simulation is 1ps.
 Waiting for 1 sub-compilation(s) to finish...
 Compiled 3 Verilog Units
-Built simulation executable C:/Users/LH Cubillos/Desktop/Experiencia_5/tb_cola_isim_beh.exe
-Fuse Memory Usage: 28276 KB
+Built simulation executable C:/Users/LH Cubillos/Desktop/Experiencia_5/tb_fifo_isim_beh.exe
+Fuse Memory Usage: 29060 KB
 Fuse CPU Usage: 389 ms

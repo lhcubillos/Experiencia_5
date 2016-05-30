@@ -44,22 +44,24 @@ Clock clk to Pad
             | clk (edge) |                  | Clock  |
 Destination |   to PAD   |Internal Clock(s) | Phase  |
 ------------+------------+------------------+--------+
-an<0>       |    8.401(R)|clk_BUFGP         |   0.000|
-an<1>       |    7.547(R)|clk_BUFGP         |   0.000|
-an<2>       |    7.633(R)|clk_BUFGP         |   0.000|
-an<3>       |    7.571(R)|clk_BUFGP         |   0.000|
-leds<0>     |    9.600(R)|clk_BUFGP         |   0.000|
-leds<1>     |    9.780(R)|clk_BUFGP         |   0.000|
-leds<2>     |    7.901(R)|clk_BUFGP         |   0.000|
-leds<3>     |   10.362(R)|clk_BUFGP         |   0.000|
-leds<4>     |    9.739(R)|clk_BUFGP         |   0.000|
-leds<5>     |    8.950(R)|clk_BUFGP         |   0.000|
-seg<0>      |    7.074(R)|clk_BUFGP         |   0.000|
-seg<1>      |    8.069(R)|clk_BUFGP         |   0.000|
-seg<2>      |    7.615(R)|clk_BUFGP         |   0.000|
-seg<3>      |    7.962(R)|clk_BUFGP         |   0.000|
-seg<4>      |    7.645(R)|clk_BUFGP         |   0.000|
-seg<6>      |    7.024(R)|clk_BUFGP         |   0.000|
+an<0>       |    7.968(R)|clk_BUFGP         |   0.000|
+an<1>       |    7.015(R)|clk_BUFGP         |   0.000|
+an<2>       |    7.932(R)|clk_BUFGP         |   0.000|
+an<3>       |    7.015(R)|clk_BUFGP         |   0.000|
+leds<0>     |    9.403(R)|clk_BUFGP         |   0.000|
+leds<1>     |    9.779(R)|clk_BUFGP         |   0.000|
+leds<2>     |    8.674(R)|clk_BUFGP         |   0.000|
+leds<3>     |    9.471(R)|clk_BUFGP         |   0.000|
+leds<4>     |    9.394(R)|clk_BUFGP         |   0.000|
+leds<5>     |    8.799(R)|clk_BUFGP         |   0.000|
+leds<6>     |    8.459(R)|clk_BUFGP         |   0.000|
+leds<7>     |    7.953(R)|clk_BUFGP         |   0.000|
+seg<0>      |    7.560(R)|clk_BUFGP         |   0.000|
+seg<1>      |    7.803(R)|clk_BUFGP         |   0.000|
+seg<2>      |    7.610(R)|clk_BUFGP         |   0.000|
+seg<3>      |    7.930(R)|clk_BUFGP         |   0.000|
+seg<4>      |    7.872(R)|clk_BUFGP         |   0.000|
+seg<6>      |    7.634(R)|clk_BUFGP         |   0.000|
 ------------+------------+------------------+--------+
 
 Clock to Setup on destination clock clk
@@ -67,11 +69,11 @@ Clock to Setup on destination clock clk
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-clk            |    6.362|         |         |         |
+clk            |    7.106|         |         |         |
 ---------------+---------+---------+---------+---------+
 
 
-Analysis completed Thu May 26 09:00:10 2016 
+Analysis completed Sun May 29 22:24:49 2016 
 --------------------------------------------------------------------------------
 
 Trace Settings:

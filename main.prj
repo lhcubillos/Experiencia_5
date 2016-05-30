@@ -1,5 +1,8 @@
 verilog work "cola_destinos_externos.v"
+verilog work "sync_fifo.v"
 verilog work "prueba_2_asc.v"
 verilog work "prueba_1_asc.v"
 verilog work "controlador_display.v"
+verilog work "controlador_ascensores.v"
+verilog work "clk_divider.v"
 verilog work "main.v"

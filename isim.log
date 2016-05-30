@@ -1,5 +1,5 @@
 ISim log file
-Running: C:\Users\LH Cubillos\Desktop\Experiencia_5\tb_cola_isim_beh.exe -intstyle ise -gui -tclbatch isim.cmd -wdb C:/Users/LH Cubillos/Desktop/Experiencia_5/tb_cola_isim_beh.wdb 
+Running: C:\Users\LH Cubillos\Desktop\Experiencia_5\tb_fifo_isim_beh.exe -intstyle ise -gui -tclbatch isim.cmd -wdb C:/Users/LH Cubillos/Desktop/Experiencia_5/tb_fifo_isim_beh.wdb 
 ISim P.20131013 (signature 0x7708f090)
 WARNING: A WEBPACK license was found.
 WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
@@ -11,9 +11,5 @@ Time resolution is 1 ps
 # run 1000 ns
 Simulator is doing circuit initialization process.
 Finished circuit initialization process.
-Address =   0, destino =        3
-Address =   1, destino =        0
-Address =   2, destino =        2
-Address =   3, destino =        1
-Address =   4, destino =        3
-Address =   5, destino =        1
+data_out =        x, data_count =  x, empty = x
+data_out =        0, data_count =  0, empty = 1
